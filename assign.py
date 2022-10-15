@@ -1,16 +1,38 @@
 import random
 
 
-def readNames():
-    namesFile = open('./names.txt', 'rt', encoding='utf-8')
-    names = []
+def read(filepath):
+    file = open(filepath, 'rt', encoding='utf-8')
+    data = []
     while True:
-        line = namesFile.readline().strip()
+        line = file.readline().strip()
         if not line:
             break
-        names.append(line)
-    namesFile.close()
+        data.append(line)
+    file.close()
+    return data
+    
+
+def readNames():
+    names = read('./names.txt')
     return names
+
+#     namesFile = open('./names.txt', 'rt', encoding='utf-8')
+#     names = []
+#     while True:
+#         line = namesFile.readline().strip()
+#         if not line:
+#             break
+#         names.append(line)
+#     namesFile.close()
+#     return names
+
+def readHistory():
+    historyFile = read('./history.txt')
+    for i in historyFile:
+        a, b = i.split(' ')
+        history.append([a, b])
+    return history
 
 
 def group(randList):
@@ -22,17 +44,17 @@ def group(randList):
     return group
 
 
-def readHistory():
-    historyFile = open('./history.txt', 'rt', encoding='utf-8')
-    history = []
-    while True:
-        line = historyFile.readline().strip()
-        if not line:
-            break
-        a, b = line.split(' ')
-        history.append([a, b])
-    historyFile.close()
-    return history
+# def readHistory():
+#     historyFile = open('./history.txt', 'rt', encoding='utf-8')
+#     history = []
+#     while True:
+#         line = historyFile.readline().strip()
+#         if not line:
+#             break
+#         a, b = line.split(' ')
+#         history.append([a, b])
+#     historyFile.close()
+#     return history
 
 
 def search(history, group):
