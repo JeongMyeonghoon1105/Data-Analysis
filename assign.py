@@ -8,19 +8,10 @@ def readNames():
         line = namesFile.readline().strip()
         if not line:
             break
-        rand = random.random()
-        names.append([line, rand])
+        names.append(line)
     namesFile.close()
-    names.sort(key=lambda x: x[1])
+    random.shuffle(names)
     return names
-
-
-def randAssign(names):
-    randList = []
-    for name in names:
-        randList.append(name[0])
-    return randList
-
 
 def group(randList):
     group = []
@@ -58,7 +49,7 @@ def search(history, group):
 historyFileAppend = open('./history.txt', 'at', encoding='utf-8')
 history = readHistory()
 while True:
-    rand = randAssign(readNames())
+    rand = readNames()
     groupList = group(rand)
     if search(history, groupList):
         even = 0
