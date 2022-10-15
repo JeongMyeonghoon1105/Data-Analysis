@@ -10,7 +10,6 @@ def readNames():
             break
         names.append(line)
     namesFile.close()
-    random.shuffle(names)
     return names
 
 
@@ -45,10 +44,12 @@ def search(history, group):
     return True
 
 
-historyFileAppend = open('./history.txt', 'at', encoding='utf-8')
+names = readNames()
 history = readHistory()
+historyFileAppend = open('./history.txt', 'at', encoding='utf-8')
+
 while True:
-    rand = readNames()
+    rand = random.shuffle(names)
     groupList = group(rand)
     if search(history, groupList):
         even = 0
