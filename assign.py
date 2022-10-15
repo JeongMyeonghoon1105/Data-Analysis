@@ -13,6 +13,7 @@ def readNames():
     random.shuffle(names)
     return names
 
+
 def group(randList):
     group = []
     index = 0
