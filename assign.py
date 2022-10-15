@@ -17,9 +17,7 @@ def readNames():
 def group(randList):
     group = []
     index = 0
-    while True:
-        if index > len(randList)-2:
-            break
+    while index <= len(randList)-2
         group.append([randList[index], randList[index+1]])
         index += 2
     return group
