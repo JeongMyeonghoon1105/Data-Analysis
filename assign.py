@@ -36,11 +36,11 @@ def readHistory():
 
 
 def search(history, group):
-    for i in history:
-        for k in group:
-            reverse = k[::-1]
-            if k == i or reverse == i:
-                return False
+    for i in group:
+        if i in history
+            return False
+        elif i[::-1] in history
+            return False
     return True
 
 
