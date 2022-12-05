@@ -1,77 +1,64 @@
 import random
 
 
-def read(filepath):
-    file = open(filepath, 'rt', encoding='utf-8')
-    data = []
+def readNames():
+    namesFile = open('./names.txt', 'rt', encoding='utf-8')
+    names = []
     while True:
-        line = file.readline().strip()
+        line = namesFile.readline().strip()
         if not line:
             break
-        data.append(line)
-    file.close()
-    return data
-    
-
-def readNames():
-    names = read('./names.txt')
+        rand = random.random()
+        names.append([line, rand])
+    namesFile.close()
+    names.sort(key=lambda x: x[1])
     return names
 
-#     namesFile = open('./names.txt', 'rt', encoding='utf-8')
-#     names = []
-#     while True:
-#         line = namesFile.readline().strip()
-#         if not line:
-#             break
-#         names.append(line)
-#     namesFile.close()
-#     return names
 
-def readHistory():
-    historyFile = read('./history.txt')
-    for i in historyFile:
-        a, b = i.split(' ')
-        history.append([a, b])
-    return history
+def randAssign(names):
+    randList = []
+    for name in names:
+        randList.append(name[0])
+    return randList
 
 
 def group(randList):
     group = []
     index = 0
-    while index <= len(randList)-2
+    while True:
+        if index > len(randList)-2:
+            break
         group.append([randList[index], randList[index+1]])
         index += 2
     return group
 
 
-# def readHistory():
-#     historyFile = open('./history.txt', 'rt', encoding='utf-8')
-#     history = []
-#     while True:
-#         line = historyFile.readline().strip()
-#         if not line:
-#             break
-#         a, b = line.split(' ')
-#         history.append([a, b])
-#     historyFile.close()
-#     return history
+def readHistory():
+    historyFile = open('./history.txt', 'rt', encoding='utf-8')
+    history = []
+    while True:
+        line = historyFile.readline().strip()
+        if not line:
+            break
+        a, b = line.split(' ')
+        history.append([a, b])
+    historyFile.close()
+    return history
 
 
 def search(history, group):
-    for i in group:
-        if i in history
-            return False
-        elif i[::-1] in history
-            return False
+    for i in history:
+        for k in group:
+            reverse = k[::-1]
+            if k == i or reverse == i:
+                return False
     return True
 
 
-names = readNames()
-history = readHistory()
 historyFileAppend = open('./history.txt', 'at', encoding='utf-8')
-
+history = readHistory()
 while True:
-    rand = random.shuffle(names)
+    rand = randAssign(readNames())
     groupList = group(rand)
     if search(history, groupList):
         even = 0
