@@ -24,6 +24,7 @@ def readHistory():
 names = readNames()
 history = readHistory()
 requiresAppend = open('./requires.txt', 'at', encoding='utf-8')
+checked = []
 
 for i in names:
     matched = []
@@ -33,7 +34,8 @@ for i in names:
         elif j[1] == i:
             matched.append(j[0])
     for j in names:
-        if j not in matched and i != j:
+        if j not in matched and i != j and j not in checked:
             requiresAppend.write(i + ' ' + j + '\n')
             print(i, end=' ')
             print(j)
+    checked.append(i)
