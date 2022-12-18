@@ -1,3 +1,6 @@
+import os
+os.remove('./requires.txt')
+
 def readNames():
   file = open('./names.txt', 'rt', encoding='utf-8')
   names = []
